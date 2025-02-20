@@ -25,7 +25,6 @@ namespace PracticaDeExamen
             dgv.Rows[i].Cells[2].Value = registro.GetEstado();
 
             registros.Add(registro);
-            //MessageBox.Show(registros[0].ToString());
 
             NOM.Clear();
             CURP.Clear();
@@ -52,7 +51,7 @@ namespace PracticaDeExamen
                     case "CC": estado = "Campeche"; break;
                     case "CS": estado = "Chiapas"; break;
                     case "CH": estado = "Chihuahua"; break;
-                    case "CM": estado = "Coahuila"; break;
+                    case "CL": estado = "Coahuila"; break;
                     case "DG": estado = "Durango"; break;
                     case "GT": estado = "Guanajuato"; break;
                     case "GR": estado = "Guerrero"; break;
@@ -133,12 +132,6 @@ namespace PracticaDeExamen
                     }
                 }
             }
-            
-        }
-
-        private void BUSCADOR_Validated(object sender, EventArgs e)
-        {
-            
         }
     }
 }

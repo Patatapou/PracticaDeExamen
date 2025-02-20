@@ -83,7 +83,6 @@
             BUSCADOR.Size = new Size(272, 27);
             BUSCADOR.TabIndex = 5;
             BUSCADOR.TextChanged += BUSCADOR_TextChanged;
-            BUSCADOR.Validated += BUSCADOR_Validated;
             // 
             // label3
             // 
