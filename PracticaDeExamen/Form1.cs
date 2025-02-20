@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Text.RegularExpressions;
+using Microsoft.Win32;
 
 namespace PracticaDeExamen
 {
@@ -17,14 +18,14 @@ namespace PracticaDeExamen
             string nombre = NOM.Text;
             string curp = CURP.Text;
             dgv.Rows.Add();
-            dgv.Rows[i].Cells[0].Value = nombre;
-            dgv.Rows[i].Cells[1].Value = edadYestado(curp)[1];
-            dgv.Rows[i].Cells[2].Value = edadYestado(curp)[0];
+            Registro registro = new Registro(nombre, edadYestado(curp)[1], edadYestado(curp)[0]);
 
-            string[] registro = { dgv.Rows[i].Cells[0].ToString(), dgv.Rows[i].Cells[1].ToString(), dgv.Rows[i].Cells[2].ToString() };
-            registros.Add(registro[0]);
-            registros.Add(registro[1]);
-            registros.Add(registro[2]);
+            dgv.Rows[i].Cells[0].Value = registro.GetNombre();
+            dgv.Rows[i].Cells[1].Value = registro.GetEdad();
+            dgv.Rows[i].Cells[2].Value = registro.GetEstado();
+
+            registros.Add(registro);
+            //MessageBox.Show(registros[0].ToString());
 
             NOM.Clear();
             CURP.Clear();
@@ -86,7 +87,7 @@ namespace PracticaDeExamen
 
                 if (hoy.Month < fechaNac.Month)
                 {
-                    res[1]=((edad.Year - 1) + " años - " + (edad.Month - 1) + " meses - " + edad.Day + " dias");
+                    res[1] = ((edad.Year - 1) + " años - " + (edad.Month - 1) + " meses - " + edad.Day + " dias");
                 }
                 else
                 {
@@ -98,6 +99,46 @@ namespace PracticaDeExamen
                 MessageBox.Show("Ingrese una CURP valida");
             }
             return res;
+        }
+
+        private void BUSCADOR_TextChanged(object sender, EventArgs e)
+        {
+            dgv.Rows.Clear();
+            if (BUSCADOR.Text=="")
+            {
+                int a = 0;
+                for (int i = 0; i < registros.Count; i++) 
+                {
+                    dgv.Rows.Add();
+                }
+                foreach (Registro x in registros)
+                {
+                    dgv.Rows[a].Cells[0].Value = x.GetNombre();
+                    dgv.Rows[a].Cells[1].Value = x.GetEdad();
+                    dgv.Rows[a].Cells[2].Value = x.GetEstado();
+                    a++;
+                }
+            }
+            else
+            {
+                dgv.Rows.Add();
+                foreach (Registro x in registros)
+                {
+                    if (x.GetNombre() == BUSCADOR.Text)
+                    {
+                        dgv.Rows[0].Cells[0].Value = x.GetNombre();
+                        dgv.Rows[0].Cells[1].Value = x.GetEdad();
+                        dgv.Rows[0].Cells[2].Value = x.GetEstado();
+                        break;
+                    }
+                }
+            }
+            
+        }
+
+        private void BUSCADOR_Validated(object sender, EventArgs e)
+        {
+            
         }
     }
 }

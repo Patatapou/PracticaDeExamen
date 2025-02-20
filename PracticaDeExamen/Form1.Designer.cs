@@ -36,16 +36,18 @@
             label3 = new Label();
             dgv = new DataGridView();
             button1 = new Button();
+            tableLayoutPanel1 = new TableLayoutPanel();
             NOMBRE = new DataGridViewTextBoxColumn();
             EDAD = new DataGridViewTextBoxColumn();
             ESTADO = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgv).BeginInit();
+            tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 9);
+            label1.Location = new Point(3, 0);
             label1.Name = "label1";
             label1.Size = new Size(64, 20);
             label1.TabIndex = 0;
@@ -53,14 +55,14 @@
             // 
             // NOM
             // 
-            NOM.Location = new Point(12, 32);
+            NOM.Location = new Point(3, 23);
             NOM.Name = "NOM";
             NOM.Size = new Size(272, 27);
             NOM.TabIndex = 1;
             // 
             // CURP
             // 
-            CURP.Location = new Point(335, 32);
+            CURP.Location = new Point(330, 23);
             CURP.Name = "CURP";
             CURP.Size = new Size(272, 27);
             CURP.TabIndex = 3;
@@ -68,7 +70,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(335, 9);
+            label2.Location = new Point(330, 0);
             label2.Name = "label2";
             label2.Size = new Size(45, 20);
             label2.TabIndex = 2;
@@ -76,15 +78,17 @@
             // 
             // BUSCADOR
             // 
-            BUSCADOR.Location = new Point(12, 112);
+            BUSCADOR.Location = new Point(3, 112);
             BUSCADOR.Name = "BUSCADOR";
             BUSCADOR.Size = new Size(272, 27);
             BUSCADOR.TabIndex = 5;
+            BUSCADOR.TextChanged += BUSCADOR_TextChanged;
+            BUSCADOR.Validated += BUSCADOR_Validated;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(12, 89);
+            label3.Location = new Point(3, 84);
             label3.Name = "label3";
             label3.Size = new Size(64, 20);
             label3.TabIndex = 4;
@@ -94,47 +98,65 @@
             // 
             dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv.Columns.AddRange(new DataGridViewColumn[] { NOMBRE, EDAD, ESTADO });
-            dgv.Location = new Point(3, 145);
+            dgv.Location = new Point(12, 160);
             dgv.Name = "dgv";
             dgv.RowHeadersWidth = 51;
-            dgv.Size = new Size(795, 293);
+            dgv.Size = new Size(776, 278);
             dgv.TabIndex = 6;
             // 
             // button1
             // 
-            button1.Location = new Point(650, 30);
+            button1.Location = new Point(657, 23);
             button1.Name = "button1";
-            button1.Size = new Size(94, 29);
+            button1.Size = new Size(94, 28);
             button1.TabIndex = 7;
             button1.Text = "REGISTRAR";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 3;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 122F));
+            tableLayoutPanel1.Controls.Add(label1, 0, 0);
+            tableLayoutPanel1.Controls.Add(label2, 1, 0);
+            tableLayoutPanel1.Controls.Add(BUSCADOR, 0, 3);
+            tableLayoutPanel1.Controls.Add(NOM, 0, 1);
+            tableLayoutPanel1.Controls.Add(label3, 0, 2);
+            tableLayoutPanel1.Controls.Add(CURP, 1, 1);
+            tableLayoutPanel1.Controls.Add(button1, 2, 1);
+            tableLayoutPanel1.Location = new Point(12, 12);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 4;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle());
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 25F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle());
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.Size = new Size(776, 142);
+            tableLayoutPanel1.TabIndex = 8;
+            // 
             // NOMBRE
             // 
-            NOMBRE.Frozen = true;
             NOMBRE.HeaderText = "NOMBRE";
             NOMBRE.MinimumWidth = 6;
             NOMBRE.Name = "NOMBRE";
-            NOMBRE.ReadOnly = true;
-            NOMBRE.Width = 300;
+            NOMBRE.Width = 250;
             // 
             // EDAD
             // 
-            EDAD.Frozen = true;
             EDAD.HeaderText = "EDAD";
             EDAD.MinimumWidth = 6;
             EDAD.Name = "EDAD";
-            EDAD.ReadOnly = true;
-            EDAD.Width = 250;
+            EDAD.Width = 200;
             // 
             // ESTADO
             // 
-            ESTADO.Frozen = true;
             ESTADO.HeaderText = "ESTADO";
             ESTADO.MinimumWidth = 6;
             ESTADO.Name = "ESTADO";
-            ESTADO.ReadOnly = true;
             ESTADO.Width = 125;
             // 
             // Form1
@@ -142,19 +164,14 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(button1);
             Controls.Add(dgv);
-            Controls.Add(BUSCADOR);
-            Controls.Add(label3);
-            Controls.Add(CURP);
-            Controls.Add(label2);
-            Controls.Add(NOM);
-            Controls.Add(label1);
+            Controls.Add(tableLayoutPanel1);
             Name = "Form1";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)dgv).EndInit();
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -167,6 +184,7 @@
         private Label label3;
         private DataGridView dgv;
         private Button button1;
+        private TableLayoutPanel tableLayoutPanel1;
         private DataGridViewTextBoxColumn NOMBRE;
         private DataGridViewTextBoxColumn EDAD;
         private DataGridViewTextBoxColumn ESTADO;
